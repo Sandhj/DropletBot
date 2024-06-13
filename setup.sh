@@ -1,6 +1,6 @@
 echo -e "SETUP REQUIRED"
 read -p "Masukkan Token Telegram :" token_tele
-read -p "Masukkan Admin ID : " admin_id
+read -p "Masukkan Token DO : " token_do
 
 sudo apt update -y
 sudo apt upgrade -y
@@ -8,19 +8,16 @@ sudo apt install python3
 sudo apt install python3-pip
 
 pip3 install pyTelegramBotAPI
-sudo apt-get install sshpass
 
 #Set LocalTime
 sudo timedatectl set-timezone Asia/Jakarta
 
 
-mkdir -p san/bot/buyvpn/akun/sg
-mkdir -p san/bot/buyvpn/akun/id
+mkdir -p san/bot/droplet
 # Pindah ke dalam folder yang baru dibuat
-cd san/bot/buyvpn/
+cd san/bot/droplet
 # Mengunduh skrip Python
-wget https://raw.githubusercontent.com/Sandhj/sanstore/main/sanstore.py
-wget https://raw.githubusercontent.com/Sandhj/sanstore/main/reseller.txt
+wget https://raw.githubusercontent.com/Sandhj/DropletBot/main/droplet.py
 
 # FOR DO CREATE
 TOKEN_TELE="$token_tele"
