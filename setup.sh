@@ -22,18 +22,33 @@ wget https://raw.githubusercontent.com/Sandhj/DropletBot/main/droplet.py
 
 # FOR DO CREATE
 TOKEN_TELE="$token_tele"
-sed -i "s/{TOKEN_TELE}/$TOKEN_TELE/g" sanstore.py
+sed -i "s/{TOKEN_TELE}/$TOKEN_TELE/g" droplet.py
 TOKEN_DO="$token_do"
-sed -i "s/{ADMIN_ID}/$ADMIN_ID/g" sanstore.py
+sed -i "s/{TOKEN_DO}/$TOKEN_DO/g" droplet.py
+PASS_DO="$pass_do"
+sed -i "s/{PASS_VPS}/$PASS_DO/g" droplet.py
 
 # fungsi running as system
 cd
-cd /etc/systemd/system
-wget https://raw.githubusercontent.com/Sandhj/sanstore/main/sanstore.service
+cat << 'EOF' > /etc/systemd/system/droplet.service
+[Unit]
+Description=Telegram Bot
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root/san/bot/droplet
+ExecStart=/usr/bin/python3 droplet.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 sudo systemctl daemon-reload
-sudo systemctl start sanstore
-sudo systemctl enable sanstore
-sudo systemctl restart sanstore
+sudo systemctl start droplet
+sudo systemctl enable droplet
+sudo systemctl restart droplet
 
 echo "Instalasi selesai."
 
