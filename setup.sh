@@ -1,6 +1,7 @@
 echo -e "SETUP REQUIRED"
 read -p "Masukkan Token Telegram :" token_tele
 read -p "Masukkan Token DO : " token_do
+read -p "Password Default VPS: " pass_do
 
 sudo apt update -y
 sudo apt upgrade -y
@@ -22,7 +23,7 @@ wget https://raw.githubusercontent.com/Sandhj/DropletBot/main/droplet.py
 # FOR DO CREATE
 TOKEN_TELE="$token_tele"
 sed -i "s/{TOKEN_TELE}/$TOKEN_TELE/g" sanstore.py
-ADMIN_ID="$admin_id"
+TOKEN_DO="$token_do"
 sed -i "s/{ADMIN_ID}/$ADMIN_ID/g" sanstore.py
 
 # fungsi running as system
